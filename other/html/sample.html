@@ -1,0 +1,584 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Example HTML Page</title>
+    <link rel="stylesheet" href="sample.css">
+    <script type="application/javascript" src="sample.js"></script>
+
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.3.1/js/tom-select.complete.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.3.1/css/tom-select.default.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
+    <!--    <link-->
+    <!--            rel="stylesheet"-->
+    <!--            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"-->
+    <!--    >-->
+    <style>
+        form div {
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>A Survey of HTML Elements</h1>
+</header>
+<main style="margin: 100px">
+    <section id="headers">
+        <h1>Headers</h1>
+        <h1>Header 1</h1>
+        <h2>Header 2</h2>
+        <h3>Header 3</h3>
+        <h5>Header 4</h5>
+        <h5>Header 5</h5>
+        <h6>Header 6</h6>
+    </section>
+
+    <section id="text-content">
+
+        <div>This is a div</div>
+
+        <p>This is a paragraph</p>
+
+        <p>
+            This is a paragraph
+        <div>This is a div inside a paragraph...</div>
+        </p>
+
+        <ol>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ol>
+
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+        <pre>
+            for(x in [1, 2, 3]) {
+              console.log(x)
+            }
+        </pre>
+
+        <hr/>
+
+
+        <blockquote>
+            In the beginning was the hyperlink, and the
+            hyperlink was with the web, and the hyperlink
+            was the web. And it was good.
+        </blockquote>
+
+        <figure>
+            <img alt="a bear" src="https://placebear.com/g/300/200">
+            <figcaption>This is a bear...</figcaption>
+        </figure>
+
+
+        <dl>
+            <dt>CSCI 440</dt>
+            <dd>Databases</dd>
+
+            <dt>CSCI 366</dt>
+            <dd>Computer Systems</dd>
+
+            <dt>CSCI 491-7</dt>
+            <dd>Web Development</dd>
+        </dl>
+
+        <div id="inline-elts">
+
+            <p>
+                This is an example of
+                <span style="color: red">a span</span>.
+            </p>
+
+            <p>
+                This is an example of
+                <a href="https://hypermedia.systems">
+                    an anchor
+                </a>.
+            </p>
+
+            <p>
+                This is an example of
+                <a href="javascript:alert('hello')">
+                    a JavaScript anchor
+                </a>.
+            </p>
+
+            <p>
+                This is an example of
+                <a target="_blank" href="https://htmx.org">
+                    an anchor that opens in a new tab/window
+                </a>.
+            </p>
+
+            <p>
+                This is an example of
+                <a download href="sample.html">
+                    an anchor that will download a file
+                </a>.
+            </p>
+
+            <p>
+                This is an example of <b>bolded text</b>.
+                This is an example of <strong>strong text</strong>.
+            </p>
+
+            <p>
+                This is an example of <i>italicized text</i>.
+                This is an example of <em>emphasized text</em>.
+            </p>
+
+            <p>
+                H<sub>2</sub>0. X<sup>2</sup>.
+                This is an example of <u>underlined text</u>.
+            </p>
+
+            <p>
+                This is some text<br/>with a break in it.
+            </p>
+
+            <p>
+                This is some text
+                <wbr/>
+                with a
+                break opportunity in it.
+            </p>
+
+            <p>
+                Javascript uses the <code>for</code> keyword
+                for looping
+            </p>
+
+            <p>
+                <img alt="a bear"
+                     src="https://placebear.com/g/300/200">
+            </p>
+
+            <p>
+                <video controls width="250">
+                    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+                            type="video/webm"/>
+                </video>
+            </p>
+
+            <p>
+                <iframe width="250" height="150"
+                        src="https://www.youtube.com/embed/r-GSGH2RxJs"
+                        title="htmx in 100 seconds">
+                </iframe>
+            </p>
+
+            <p>
+                <a href="https://www.youtube.com/embed/r-GSGH2RxJs"
+                   target="my-iframe">
+                    HTMX in 100 Seconds
+                </a> <br/>
+                <a href="https://www.youtube.com/embed/4gwOv2-A8Vo"
+                   target="my-iframe">
+                    HTMX sucks
+                </a> <br/>
+                <iframe name="my-iframe" width="250" height="150">
+                </iframe>
+            </p>
+
+            <p>
+                <svg height="200" width="350" xmlns="http://www.w3.org/2000/svg">
+                    <path id="lineAC" d="M 30 180 q 150 -250 300 0"
+                          stroke="blue" stroke-width="2" fill="none"/>
+                    <text style="fill:red;font-size:25px;">
+                        <textPath href="#lineAC" startOffset="80">
+                            I love SVG! I love SVG!
+                        </textPath>
+                    </text>
+                    Sorry, your browser does not support inline SVG.
+                </svg>
+            </p>
+
+            <details>
+                <summary>HTML</summary>
+                The markup Language of The WWW
+            </details>
+            <details>
+                <summary>htmx</summary>
+                An extension to HTML
+            </details>
+
+
+            <dialog open>
+                <p>Greetings, one and all!</p>
+                <form method="dialog">
+                    <button>OK</button>
+                </form>
+            </dialog>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Teacher</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>CSCI 366</td>
+                    <td>Carson Gross</td>
+                </tr>
+                <tr>
+                    <td>CSCI 107</td>
+                    <td>John Paxton</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td>Total:</td>
+                    <td>2</td>
+                </tr>
+                </tfoot>
+            </table>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Teacher</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>CSCI 366</td>
+                    <td rowspan="2">Carson Gross</td>
+                </tr>
+                <tr>
+                    <td>CSCI 468</td>
+                </tr>
+                </tbody>
+
+                <tfoot>
+                <tr>
+                    <td>Total:</td>
+                    <td>2</td>
+                </tr>
+                </tfoot>
+            </table>
+
+
+            <table>
+                <caption>Class Schedule Fall 2024</caption>
+                <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Teacher</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>CSCI 366</td>
+                    <td>Carson Gross</td>
+                </tr>
+                <tr>
+                    <td>CSCI 107</td>
+                    <td>John Paxton</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td>Total:</td>
+                    <td>2</td>
+                </tr>
+                </tfoot>
+            </table>
+
+            <p data-last-updated="2024-1-30">
+                This is an editable paragraph
+            </p>
+
+            <p onclick="alert('You clicked me!')">
+                Click Me...
+            </p>
+
+            <form action="/signup" method="post">
+                <label>
+                    Enter An Email:
+                    <input name="email" type="email">
+                </label>
+                <input type="submit" value="Sign Up For Our Emails!">
+            </form>
+
+
+            <h3>Form Inputs Examples</h3>
+
+            <form>
+
+                <div>
+                    <label>A text input
+                        <input name="text"
+                               type="text"
+                               value="Some Text">
+                    </label>
+                </div>
+
+                <div>
+                    <label>A datalist-based text input
+                        <input name="text2"
+                               type="text"
+                               list="datalist-1">
+                    </label>
+                    <datalist id="datalist-1">
+                        <option value="Bridger Bowl">
+                        <option value="Big Sky">
+                        <option value="Lost Trail">
+                        <option value="Discovery">
+                        <option value="Big Mountain">
+                    </datalist>
+                </div>
+
+                <div>
+                    <input name="button-example"
+                           type="button"
+                           value="A Button Input">
+                </div>
+
+                <div>
+                    <label>A checkbox input
+                        <input name="checkbox"
+                               type="checkbox"
+                               value="checkbox1">
+                    </label>
+                </div>
+
+                <div>
+                    <label>A color input
+                        <input name="color"
+                               type="color"
+                               value="color1">
+                    </label>
+                </div>
+
+                <div>
+                    <label>A date input
+                        <input name="date"
+                               type="date"
+                               value="1976-06-05">
+                    </label>
+                </div>
+
+                <div>
+                    <label>A date-time input
+                        <input name="date-time"
+                               type="datetime-local"
+                               value="1976-06-05T02:30">
+                    </label>
+                </div>
+
+                <div>
+                    <label>An email input
+                        <input name="email"
+                               type="email">
+                    </label>
+                </div>
+
+
+                <div>
+
+                    <input name="hidden"
+                           type="hidden"
+                           value="A secret">
+
+                </div>
+
+                <div>
+                    <label>A file input
+                        <input name="file"
+                               type="file">
+                    </label>
+                </div>
+
+                <div>
+                    <label>An number input
+                        <input name="number"
+                               type="number"
+                               value="">
+                    </label>
+                </div>
+
+                <div>
+                    <label>A password input
+                        <input name="password"
+                               type="password"
+                               value="opensaysme">
+                    </label>
+                </div>
+
+                <div>A radio input:
+                    <div>
+                        <label>
+                            MSU
+                            <input name="radio" type="radio"
+                                   value="MSU" checked>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            U of Montana
+                            <input name="radio" type="radio"
+                                   value="UofM">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Carroll College
+                            <input name="radio" type="radio"
+                                   value="Carroll College">
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label>A range input
+                        <input name="range" type="range"
+                               value="50" min="0" max="100">
+                    </label>
+                </div>
+
+                <div>
+                    <label>A search input
+                        <input name="search" type="search">
+                    </label>
+                </div>
+
+                <div>
+                    <input name="submit-example"
+                           type="submit"
+                           value="Submit">
+                </div>
+
+                <div>
+                    <button name="action"
+                            value="button-example">
+                        A Button
+                    </button>
+                </div>
+
+                <div>
+                    <label>
+                        A Select Input:
+                        <select name="select-example">
+                            <option value="msu">Montana State</option>
+                            <option value="uofm">U of M</option>
+                            <option value="cc" selected>Carroll College</option>
+                        </select>
+                    </label>
+                </div>
+
+
+                <div>
+                    <label>
+                        A Select Input With Groupings:
+                        <select name="select-example2">
+                            <optgroup label="Public">
+                                <option value="msu">Montana State</option>
+                                <option value="uofm">U of M</option>
+                                <option value="mt">Montana Tech</option>
+                            </optgroup>
+                            <optgroup label="Private">
+                                <option value="cc">Carroll College</option>
+                                <option value="cc">Rocky Mountain College</option>
+                            </optgroup>
+                        </select>
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        A Select Input:
+                        <select name="select-example3" multiple>
+                            <option value="msu">Montana State</option>
+                            <option value="uofm">U of M</option>
+                            <option value="cc" selected>Carroll College</option>
+                        </select>
+                    </label>
+                </div>
+
+
+                <div>
+                    <textarea name="text-area"
+                              rows="20" cols="80">
+This is some example text!
+                    </textarea>
+                </div>
+
+                <div>
+                    <fieldset>
+                        <legend>Inputs</legend>
+                        <label>Input 1
+                            <input name="input1">
+                        </label>
+                        <label>Input 2
+                            <input name="input2">
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div>
+                    <output>
+                        This is some output
+                    </output>
+                </div>
+
+                <div>
+                    Progress:
+                    <progress value="50" max="100">
+                    </progress>
+                </div>
+
+                <div>
+                    <select id="select-state"
+                            name="state[]"
+                            multiple
+                            autocomplete="off">
+                        <option value="">Select a state...</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        ...
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY" selected>Wyoming</option>
+                    </select>
+                    <script>
+                        new TomSelect("#select-state",{
+                            maxItems: 3
+                        });
+                    </script>
+                </div>
+
+            </form>
+
+
+            <div id="editor">
+                <p>Hello World!</p>
+                <p>Some initial <strong>bold</strong> text</p>
+                <p><br/></p>
+            </div>
+            <script>
+                const quill = new Quill('#editor', {
+                    theme: 'snow'
+                });
+            </script>
+        </div>
+
+    </section>
+</main>
+
+</body>
+
+</html>
+

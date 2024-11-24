@@ -1,0 +1,22 @@
+
+<form hx-post="/todos/reorder"
+hx-target="main"
+hx-swap="innerHTML show:main:top">
+<ul id="todo-list">
+    {% for todo in todos%}
+        <li style="list-style: none">
+            <span class="handle">
+            <img src="/img/drag-handle.svg" width="20">
+            </span> -{{ todo.text }}
+            <input type="hidden" name="ids" value="{{ todo.id }}">
+        </li>
+    {% endfor %}
+</ul>
+<button>Save</button>
+</form>
+<script>
+new Sortable(document.getElementById('todo-list'), {
+  handle: '.handle', // handle's class
+    animation: 150
+});
+</script>

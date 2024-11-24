@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block header %}
+    <h1>Contacts / {{ contact['id'] }}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <h2>Contact Info</h2>
+    <table>
+        <tbody>
+        <tr>
+            <th>First Name</th>
+            <td>{{ contact['first_name'] }}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{ contact['last_name'] }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>
+                <a href="mailto:{{ contact['email'] }}">
+                {{ contact['email'] }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>GUID</th>
+            <td>{{ contact['guid'] }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <form method="post" action="/contacts/{{ contact['id'] }}/delete">
+        <button>Delete This Contact</button>
+    </form>
+{%  endblock %}

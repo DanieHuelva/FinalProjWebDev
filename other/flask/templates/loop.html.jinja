@@ -1,0 +1,13 @@
+<html>
+<body>
+<h1>Loop Demo</h1>
+{% set numbers = range(1, 10) %}
+{% for number in numbers %}
+    {% if number % 2 == 0 %}
+        <p>{{ number }}</p>
+        {% else %}
+        <p><strong>{{ number }}</strong>!</p>
+    {% endif %}
+{% endfor %}
+</body>
+</html>

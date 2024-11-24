@@ -1,0 +1,15 @@
+{% extends "base.html.jinja" %}
+
+{% block content %}
+    {% if form_data %}
+        {{ form_data }}
+    {% endif %}
+    <form action="/form/session" method="POST">
+        <label>
+            Enter Some Data:
+            <input name="form_data" placeholder="Enter some data..."/>
+        </label>
+        <button>Submit It</button>
+    </form>
+{% endblock %}
+

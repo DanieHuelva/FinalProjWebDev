@@ -1,0 +1,44 @@
+<ol id="todos-list">
+    {% for todo in todos%}
+        <li> 
+            {% if todo.id == editing%}
+            <form id="search-results" method="post" action="/todos/{{ todo.id}}">
+                <input autofocus required type="text" value="{{ todo.text}}" name="todo">
+                <input type="hidden" name="view" value="{{ view }}">
+            </form>
+            {%else%}
+            <form id="search-results" hx-post="/todos/{{ todo.id }}/toggle"
+                    hx-target="main"
+            ondblclick="document.getElementById('edit-{{todo.id}}').submit()">
+
+            <button style="all:unset"> 
+                {% if todo.complete %}
+                    <img src="/img/todo-white.svg" width="20px">
+                {% else %}
+                    <img src="/img/unchecked-white.svg" width="20px">
+
+                {% endif %}
+            </button>
+            <input type="hidden" name="view" value="{{ view }}">
+
+            {% if todo.complete %}
+                <del>
+            {% endif %}
+            
+            {{ todo.text }}
+
+            {% if todo.complete %}
+                </del>
+            {% endif %}
+                
+            </form>
+
+
+            <form id="edit-{{todo.id}}" action="/todos/{{ todo.id }}/edit" method="get">
+                <input type="hidden" name="view" value="{{ view }}">
+            </form>
+            {%endif%}
+
+        </li>
+    {% endfor %}
+</ol>

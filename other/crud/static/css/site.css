@@ -1,0 +1,13 @@
+.center {
+    text-align: center;
+}
+
+.alert {
+    background-color: rgba(151, 198, 1, 0.925);
+    border: 3px solid green;
+    margin: auto;
+    padding: 8px;
+    color: black;
+    border-radius: 12px;
+    max-width: 475px;
+}

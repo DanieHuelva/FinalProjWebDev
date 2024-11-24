@@ -1,0 +1,33 @@
+
+<form action="/todos" method="post">
+    <label>
+        New TODO
+        <input {{'autofocus' if editing is undefined}} required type="text" name="todo" placeholder="Enter a new TODO">
+    </label>
+    <input type="hidden" name="view" value="{{ view }}">
+</form>
+
+<a hx-get="/todos/reorder"
+    hx-target="#todos-list"
+    hx-swap="outerHTML">Reorder Todos
+</a>
+
+{%include "todos.html" %}
+
+<nav>
+    <ul>
+        <li>
+            <a class="{{'contrast' if view == None}}"href="/todos">All</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a class="{{'contrast' if view == 'active'}}"href="/todos?view=active">Active</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a class="{{'contrast' if view == 'complete'}}"href="/todos?view=complete">Complete</a>
+        </li>
+    </ul>
+</nav>

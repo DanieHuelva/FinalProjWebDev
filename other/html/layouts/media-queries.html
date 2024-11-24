@@ -1,0 +1,41 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Example Media Query Layout</title>
+</head>
+<style>
+    .content {
+        min-width: 300px;
+        border: 1px solid black;
+        text-align: center;
+        min-height: 300px;
+    }
+
+
+    @media screen and (max-width: 900px) {
+        .content {
+            max-width: 300px;
+            margin: auto;
+        }
+    }
+
+    @media screen and (min-width: 900px) {
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+</style>
+<body>
+<main>
+
+    <div class="container">
+        <div class="content">Col 1</div>
+        <div class="content">Col 2</div>
+        <div class="content">Col 3</div>
+    </div>
+</main>
+
+
+</body>
