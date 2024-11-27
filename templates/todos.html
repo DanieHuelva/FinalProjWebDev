@@ -22,14 +22,11 @@
             <input type="hidden" name="view" value="{{ view }}">
 
             {% if todo.complete %}
-                <del>
+                <del>{{ todo.text|safe }}</del>
+            {% else %}
+                {{ todo.text|safe }}
             {% endif %}
-            
-            {{ todo.text }}
-
-            {% if todo.complete %}
-                </del>
-            {% endif %}
+        
                 
             </form>
 

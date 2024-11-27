@@ -2,7 +2,9 @@
 <form action="/todos" method="post">
     <label>
         New TODO
-        <input {{'autofocus' if editing is undefined}} required type="text" name="todo" placeholder="Enter a new TODO">
+        <div id="editor-container" style="height: 150px;"></div>
+        <input type="hidden" name="todo" id="todo-input">
+
     </label>
     <input type="hidden" name="view" value="{{ view }}">
 </form>

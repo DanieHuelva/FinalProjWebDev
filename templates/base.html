@@ -7,6 +7,11 @@
     <script src="/js/Sortable.js"></script>
     <script src="/js/htmx-2.0.3.js"></script>
 
+    <!-- Adding Quill JS-->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+
+
 </head>
 <body>
 <header class="container center">
@@ -26,3 +31,36 @@
 </main>
 </body>
 </html>
+
+<!-- Adding Quill JS to use with text styling-->
+<script> 
+    // Wait until the HTML is loaded before running
+    document.addEventListener("DOMContentLoaded", () => {
+
+        // Initialize Quill on editor-container
+        const quill = new Quill('#editor-container', {
+
+            //Default theme why not
+            theme: 'snow',
+
+            //Which features to include
+            modules: {
+
+                //Buttons at the top of the editor
+                toolbar: [
+                
+                    ['bold', 'italic', 'underline'],
+
+                    //It was one extra line so I added this but do we need this???
+                    [{ list: 'ordered' }, { list: 'bullet' }]
+                ]
+            }
+        });
+    
+        // Sync Quill content with the hidden input field on form submit
+        const form = document.querySelector('form[action="/todos"]');
+        form.addEventListener("submit", () => {
+            document.getElementById("todo-input").value = quill.root.innerHTML;
+        });
+    });
+</script>
