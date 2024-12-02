@@ -37,21 +37,34 @@
 </html>
         
 
+<!-- Using Quill For Fancy Text <3-->
 <script>
+
+    //Load content
     document.addEventListener("DOMContentLoaded", () => {
-        let quill; // Global variable for the Quill instance
+
+        // Global variable for the Quill instance
+        let quill; 
     
         // Function to initialize or reinitialize Quill editor
         const initializeQuill = () => {
             const editorContainer = document.getElementById('editor-container');
+            
+            // Check if Quill is already initialized by looking for the __quill property
+            if (editorContainer && editorContainer.__quill) {
+
+                // If Quill is already initialized ust focus and return
+                // Avoids duplicate initialization
+                editorContainer.__quill.focus();
+                return; 
     
-            // Check if Quill is already initialized
-            if (!editorContainer || editorContainer.__quill) {
-                return; // Avoid duplicate initialization
             }
     
+            // Initialize Quill editor
             quill = new Quill(editorContainer, {
-                theme: 'snow', // Theme for the editor
+
+                //Theme
+                theme: 'snow', 
                 modules: {
                     toolbar: [
                         ['bold', 'italic', 'underline'], // Text styling options
@@ -60,13 +73,19 @@
                 }
             });
     
+            // Mark this editor container as having Quill initialized
+
+            // Attach Quill instance to the container
+            editorContainer.__quill = quill; 
+    
             const form = document.querySelector('form[action="/todos"]');
             const hiddenInput = document.getElementById("todo-input");
     
             if (form && hiddenInput) {
                 // Function to sync editor content with hidden input
                 const syncEditorContent = () => {
-                    hiddenInput.value = quill.root.innerHTML.trim(); // Sync Quill content
+                    // Get plain text from Quill editor
+                    hiddenInput.value = quill.getText().trim(); // Get plain text content to avoid all those <p> on reorder
                 };
     
                 // Sync content before form submission
@@ -77,7 +96,7 @@
                 // Handle Enter key for form submission
                 editorContainer.addEventListener("keydown", (event) => {
                     if (event.key === "Enter" && !event.shiftKey) {
-                        event.preventDefault(); // Prevent default Quill behavior
+                        event.preventDefault(); // Prevent default Quill behavior (new line)
                         syncEditorContent(); // Update hidden input
                         form.submit(); // Submit the form
                     }
@@ -88,10 +107,11 @@
         // Initial setup on page load
         initializeQuill();
     
-        // Reinitialize Quill after HTMX updates
+        // Reinitialize Quill after HTMX updates (if content is replaced)
         document.body.addEventListener("htmx:afterSwap", () => {
             initializeQuill();
         });
     });
-    </script>
+</script>
+
     

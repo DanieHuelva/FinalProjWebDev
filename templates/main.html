@@ -5,6 +5,17 @@
         <div id="editor-container" style="height: 150px;"></div>
         <input type="hidden" name="todo" id="todo-input">
 
+        <!-- CSS To Prevent The Box From Changing Sizes For Some Odd Reason??? -->
+        <style>
+            #editor-container {
+                height: 150px; /* Adjust height as needed */
+                border: 1px solid #ccc;
+                padding: 10px;
+                background-color: gray;
+                box-sizing: border-box;
+            }
+        </style>
+
     </label>
     <input type="hidden" name="view" value="{{ view }}">
 </form>
