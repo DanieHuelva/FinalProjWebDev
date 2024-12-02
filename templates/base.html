@@ -11,6 +11,10 @@
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
 
+    <!-- Adding Lottie Animations-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.1/lottie.min.js"></script>
+
+
 
 </head>
 <body>
@@ -31,36 +35,63 @@
 </main>
 </body>
 </html>
+        
 
-<!-- Adding Quill JS to use with text styling-->
-<script> 
-    // Wait until the HTML is loaded before running
+<script>
     document.addEventListener("DOMContentLoaded", () => {
-
-        // Initialize Quill on editor-container
-        const quill = new Quill('#editor-container', {
-
-            //Default theme why not
-            theme: 'snow',
-
-            //Which features to include
-            modules: {
-
-                //Buttons at the top of the editor
-                toolbar: [
-                
-                    ['bold', 'italic', 'underline'],
-
-                    //It was one extra line so I added this but do we need this???
-                    [{ list: 'ordered' }, { list: 'bullet' }]
-                ]
-            }
-        });
+        let quill; // Global variable for the Quill instance
     
-        // Sync Quill content with the hidden input field on form submit
-        const form = document.querySelector('form[action="/todos"]');
-        form.addEventListener("submit", () => {
-            document.getElementById("todo-input").value = quill.root.innerHTML;
+        // Function to initialize or reinitialize Quill editor
+        const initializeQuill = () => {
+            const editorContainer = document.getElementById('editor-container');
+    
+            // Check if Quill is already initialized
+            if (!editorContainer || editorContainer.__quill) {
+                return; // Avoid duplicate initialization
+            }
+    
+            quill = new Quill(editorContainer, {
+                theme: 'snow', // Theme for the editor
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'], // Text styling options
+                        [{ list: 'ordered' }, { list: 'bullet' }] // Lists
+                    ]
+                }
+            });
+    
+            const form = document.querySelector('form[action="/todos"]');
+            const hiddenInput = document.getElementById("todo-input");
+    
+            if (form && hiddenInput) {
+                // Function to sync editor content with hidden input
+                const syncEditorContent = () => {
+                    hiddenInput.value = quill.root.innerHTML.trim(); // Sync Quill content
+                };
+    
+                // Sync content before form submission
+                form.addEventListener("submit", (event) => {
+                    syncEditorContent();
+                });
+    
+                // Handle Enter key for form submission
+                editorContainer.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" && !event.shiftKey) {
+                        event.preventDefault(); // Prevent default Quill behavior
+                        syncEditorContent(); // Update hidden input
+                        form.submit(); // Submit the form
+                    }
+                });
+            }
+        };
+    
+        // Initial setup on page load
+        initializeQuill();
+    
+        // Reinitialize Quill after HTMX updates
+        document.body.addEventListener("htmx:afterSwap", () => {
+            initializeQuill();
         });
     });
-</script>
+    </script>
+    
