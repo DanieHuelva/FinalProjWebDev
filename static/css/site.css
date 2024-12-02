@@ -3,17 +3,35 @@
 }
 
 /* Style for the mouse trail */
-.mouse-trail {
-    position: absolute;
-    width: 15px;  /* Size of the trail */
-    height: 15px;
-    background-color: rgba(0, 0, 0, 0.5);  /* Dark semi-transparent color */
-    border-radius: 50%;  /* Make it circular */
-    pointer-events: none;  /* Ensure the trail doesn't interfere with mouse interaction */
-    transition: transform 0.1s ease-out, opacity 0.5s ease-out; /* Smooth transitions */
-    opacity: 0;
+/* Snowflake styles */
+.snowflake {
+    position: absolute;/* Set width of the image */
+    height: 30px; 
+    pointer-events: none; /* Prevent interaction with the element */
+    opacity: 1; 
+    animation: fade-out 1.5s ease-out forwards, fall 1.5s linear;
 }
 
-.mouse-trail.animate {
-    opacity: 1;  /* Show the trail */
+/* Fade-out effect */
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
 }
+
+@keyframes float-down {
+    to {
+        transform: translateY(100px) rotate(360deg); 
+    }
+}
+
+
+/* Slight falling effect */
+@keyframes fall {
+    to {
+        transform: translateY(50px);
+    }
+}
+
+
+

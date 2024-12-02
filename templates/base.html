@@ -34,41 +34,44 @@
     {%endblock%}
 </main>
 
+<!-- Script fo snowflake mouse trail-->
     <script>
-        // Create the trailing effect
-        const trailLength = 10; // Number of trails to create
-        let trails = [];  // Array to hold the trail elements
-
-        // Create initial trail elements and append them to the body
-        for (let i = 0; i < trailLength; i++) {
+        document.addEventListener('mousemove', function (event) {
+            const x = event.pageX;
+            const y = event.pageY;
+        
+            // Snowflake Effect
+            const snowflake = document.createElement('img');
+            snowflake.src = '/img/threesnow.png'; 
+            snowflake.classList.add('snowflake');
+            document.body.appendChild(snowflake);
+            
+        
+            // Position and customize snowflake
+            snowflake.style.left = `${x}px`;
+            snowflake.style.top = `${y}px`;
+            const size = Math.random() * 10 + 10;
+            snowflake.style.fontSize = `${size}px`;
+            const rotation = Math.random() * 360;
+            snowflake.style.transform = `rotate(${rotation}deg)`;
+        
+            // Remove snowflake after animation
+            snowflake.addEventListener('animationend', () => snowflake.remove());
+        
+            // Circle Trail (from previous code)
             const trail = document.createElement('div');
-            trail.classList.add('mouse-trail');
+            trail.classList.add('mouse-trail'); 
             document.body.appendChild(trail);
-            trails.push(trail);
-        }
-
-        // Function to update the position of the trail elements
-        let lastX = -1;
-        let lastY = -1;
-
-        document.addEventListener('mousemove', function(event) {
-            // Set the new position for each trail element
-            let x = event.pageX;
-            let y = event.pageY;
-
-            // Move each trail element to the previous trail's position
-            trails.forEach((trail, index) => {
-                if (index === 0) {
-                    trail.style.left = `${x - trail.offsetWidth / 2}px`;
-                    trail.style.top = `${y - trail.offsetHeight / 2}px`;
-                    trail.classList.add('animate'); // Make it visible
-                } else {
-                    const prevTrail = trails[index - 1];
-                    trail.style.left = `${parseFloat(prevTrail.style.left)}px`;
-                    trail.style.top = `${parseFloat(prevTrail.style.top)}px`;
-                }
-            });
+        
+            // Position and customize trail
+            trail.style.left = `${x}px`;
+            trail.style.top = `${y}px`;
+        
+            // Remove circle after some time
+            setTimeout(() => trail.remove(), 500);
         });
+        
+        
     </script>
 </body>
 </html>
