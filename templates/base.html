@@ -33,6 +33,43 @@
 
     {%endblock%}
 </main>
+
+    <script>
+        // Create the trailing effect
+        const trailLength = 10; // Number of trails to create
+        let trails = [];  // Array to hold the trail elements
+
+        // Create initial trail elements and append them to the body
+        for (let i = 0; i < trailLength; i++) {
+            const trail = document.createElement('div');
+            trail.classList.add('mouse-trail');
+            document.body.appendChild(trail);
+            trails.push(trail);
+        }
+
+        // Function to update the position of the trail elements
+        let lastX = -1;
+        let lastY = -1;
+
+        document.addEventListener('mousemove', function(event) {
+            // Set the new position for each trail element
+            let x = event.pageX;
+            let y = event.pageY;
+
+            // Move each trail element to the previous trail's position
+            trails.forEach((trail, index) => {
+                if (index === 0) {
+                    trail.style.left = `${x - trail.offsetWidth / 2}px`;
+                    trail.style.top = `${y - trail.offsetHeight / 2}px`;
+                    trail.classList.add('animate'); // Make it visible
+                } else {
+                    const prevTrail = trails[index - 1];
+                    trail.style.left = `${parseFloat(prevTrail.style.left)}px`;
+                    trail.style.top = `${parseFloat(prevTrail.style.top)}px`;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
         
@@ -96,6 +133,7 @@
                 // Handle Enter key for form submission
                 editorContainer.addEventListener("keydown", (event) => {
                     if (event.key === "Enter" && !event.shiftKey) {
+                        
                         event.preventDefault(); // Prevent default Quill behavior (new line)
                         syncEditorContent(); // Update hidden input
                         form.submit(); // Submit the form

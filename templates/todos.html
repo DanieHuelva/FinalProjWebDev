@@ -14,6 +14,8 @@
             <button style="all:unset"> 
                 {% if todo.complete %}
                     <img src="/img/todo-white.svg" width="20px">
+                    <!-- Lottie Animation Container for Completed Task -->
+                    <div id="lottie-complete-{{ todo.id }}" style="width: 50px; height: 50px; display: inline-block;"></div>
                 {% else %}
                     <img src="/img/unchecked-white.svg" width="20px">
 
@@ -40,3 +42,56 @@
         
     {% endfor %}
 </ol>
+
+<script>
+    // Function to initialize Lottie animations for completed tasks
+    function initializeLottieAnimations() {
+        {% for todo in todos %}
+            {% if todo.complete %}
+            console.log("Loading Lottie animation for todo: {{ todo.id }}");
+
+            // Get the container element
+            const containerId = 'lottie-complete-{{ todo.id }}';
+            const container = document.getElementById(containerId);
+            
+            if (container) {
+                // Ensure that the animation is not loaded multiple times for the same element
+                if (!container.hasAttribute('data-lottie-loaded')) {
+                    // Mark this container as having a loaded animation
+                    container.setAttribute('data-lottie-loaded', 'true');
+                    
+                    // Center the animation container in the middle of the screen
+                    container.style.position = 'fixed';
+                    container.style.width = '500px'; // Set width
+                    container.style.height = '500px'; // Set height
+                    container.style.top = '50%';
+                    container.style.left = '50%';
+                    container.style.transform = 'translate(-50%, -50%)';
+                    container.style.zIndex = '9999'; // Make sure it's on top of other content
+
+                    // Load the Lottie animation
+                    const animation = lottie.loadAnimation({
+                        container: container,
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: true,
+                        path: "/animations/ToDoCheckChristmas.json"  // Path to your Lottie JSON animation
+                    });
+
+                    // Once the animation completes, hide or remove the container
+                    animation.addEventListener('complete', function() {
+                        container.style.display = 'none';  // Hide the container after the animation finishes
+                        // Alternatively, you can remove the container completely:
+                        // container.remove();
+                    });
+                }
+            }
+            {% endif %}
+        {% endfor %}
+    }
+
+    // Re-run Lottie initialization after HTMX updates
+    document.body.addEventListener("htmx:afterSwap", initializeLottieAnimations);
+
+
+</script>

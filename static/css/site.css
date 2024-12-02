@@ -1,3 +1,19 @@
 .center {
     text-align: center;
 }
+
+/* Style for the mouse trail */
+.mouse-trail {
+    position: absolute;
+    width: 15px;  /* Size of the trail */
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.5);  /* Dark semi-transparent color */
+    border-radius: 50%;  /* Make it circular */
+    pointer-events: none;  /* Ensure the trail doesn't interfere with mouse interaction */
+    transition: transform 0.1s ease-out, opacity 0.5s ease-out; /* Smooth transitions */
+    opacity: 0;
+}
+
+.mouse-trail.animate {
+    opacity: 1;  /* Show the trail */
+}
