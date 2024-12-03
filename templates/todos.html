@@ -15,7 +15,12 @@
                 {% if todo.complete %}
                     <img src="/img/todo-white.svg" width="20px">
                     <!-- Lottie Animation Container for Completed Task -->
-                    <div id="lottie-complete-{{ todo.id }}" style="width: 50px; height: 50px; display: inline-block;"></div>
+                    <div id="lottie-complete-{{ todo.id }}" 
+                    style="width: 400px; height: 400px; display: inline-block; 
+                           position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                           z-index: 9999;">
+               </div>
+               
                 {% else %}
                     <img src="/img/unchecked-white.svg" width="20px">
 
@@ -60,14 +65,6 @@
                     // Mark this container as having a loaded animation
                     container.setAttribute('data-lottie-loaded', 'true');
                     
-                    // Center the animation container in the middle of the screen
-                    container.style.position = 'fixed';
-                    container.style.width = '400px'; // Set width
-                    container.style.height = '400px'; // Set height
-                    container.style.top = '50%';
-                    container.style.left = '50%';
-                    container.style.transform = 'translate(-50%, -50%)';
-                    container.style.zIndex = '9999'; // Make sure it's on top of other content
 
                     // Load the Lottie animation
                     const animation = lottie.loadAnimation({

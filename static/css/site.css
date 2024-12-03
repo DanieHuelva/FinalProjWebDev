@@ -33,14 +33,7 @@
     }
 }
 
-/* Apply GIF background to the entire page */
-body {
-    background: url('/animations/snow.gif'); /* Path to your GIF */
-    background-size: cover; /* Ensures the GIF covers the entire background */
-    margin: 0; /* Remove default margin */
-    height: 100vh; /* Ensure the body takes full height of the viewport */
-    overflow: hidden; /* Prevent scrollbars if the GIF is larger than the screen */
-}
+
 
 
 
