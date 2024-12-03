@@ -20,9 +20,12 @@
 <body>
 <header class="container center">
     <h1><img style="height: 60px" src="/img/todo-white.svg"> TODOApp</h1>
+
+    <div id="lottie-animation" style="position: absolute; right: 50px; top: -10px; width: 130px; height: 130px; display: none; z-index: 9999;"></div>
+
     <input class="form-control" type="search"
         style="float: right; width: 300px"
-        name="search" placeholder="Begin Typing To Search Users..." 
+        name="search" placeholder="Begin Typing To Search" 
         hx-get="/search" 
         hx-trigger="input changed delay:500ms, search" 
         hx-target="#todos-list">
@@ -34,7 +37,7 @@
     {%endblock%}
 </main>
 
-<!-- Script fo snowflake mouse trail-->
+<!-- Script for snowflake mouse trail-->
     <script>
         document.addEventListener('mousemove', function (event) {
             const x = event.pageX;
@@ -155,4 +158,32 @@
     });
 </script>
 
+
+    <script>
+        // Initialize Lottie Animation
+        var animation = bodymovin.loadAnimation({
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: false, // Set to false so the animation doesn't play automatically
+            path: '/animations/snowman.json' // Replace with the path to your Lottie animation JSON
+        });
+    
+        // Get the search input and Lottie animation container
+        var searchInput = document.querySelector('input[type="search"]');
+        var lottieContainer = document.getElementById('lottie-animation');
+    
+        // When the search bar is clicked, show and start the animation
+        searchInput.addEventListener('focus', function() {
+            console.log("click")
+            lottieContainer.style.display = 'block';  // Show the Lottie animation
+            animation.play(); // Play the animation
+        });
+    
+        // When the search bar loses focus, stop the animation
+        searchInput.addEventListener('blur', function() {
+            lottieContainer.style.display = 'none';  // Hide the Lottie animation
+            animation.stop(); // Stop the animation
+        });
+    </script>
     

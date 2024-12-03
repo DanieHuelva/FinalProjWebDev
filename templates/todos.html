@@ -65,7 +65,6 @@
                     // Mark this container as having a loaded animation
                     container.setAttribute('data-lottie-loaded', 'true');
                     
-
                     // Load the Lottie animation
                     const animation = lottie.loadAnimation({
                         container: container,
@@ -87,8 +86,19 @@
         {% endfor %}
     }
 
-    // Re-run Lottie initialization after HTMX updates
-    document.body.addEventListener("htmx:afterSwap", initializeLottieAnimations);
+    // Re-run Lottie initialization after HTMX updates, but only for tasks that are marked complete
+    document.body.addEventListener("htmx:afterSwap", function(event) {
+        // Check if the change is for a completed task (i.e., checkbox is checked)
 
+        //PROBLEM IS HERE: WHEN UNCHECKING A TASK THE CHECKMARK IS TRIGGERED IF ANOTHER TASK IS CHECKED
+        const updatedTask = event.target.querySelector('img[src="/img/todo-white.svg"]');
+        
+        if (updatedTask) {
+            // Only trigger Lottie if the task was marked as complete (checked)
+            initializeLottieAnimations();
+        }
+    });
 
 </script>
+
+
