@@ -1,9 +1,16 @@
+<div>
+    <a href="/?sort=order&view={{ view }}" {% if not sort_by_due_date %}class="active"{% endif %}>Sort by Order</a> |
+    <a href="/?sort=due_date&view={{ view }}" {% if sort_by_due_date %}class="active"{% endif %}>Sort by Due Date</a>
+</div>
+
+
 <ol id="todos-list">
     {% for todo in todos%}
         <li> 
             {% if todo.id == editing%}
             <form id="search-results" method="post" action="/todos/{{ todo.id}}">
                 <input autofocus required type="text" value="{{ todo.text}}" name="todo">
+                <input type="date" name="due_date" value="{{ todo.due_date }}" />
                 <input type="hidden" name="view" value="{{ view }}">
             </form>
             {%else%}
@@ -17,10 +24,10 @@
                     <!-- Lottie Animation Container for Completed Task -->
                     <div id="lottie-complete-{{ todo.id }}" 
                     style="width: 400px; height: 400px; display: inline-block; 
-                           position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                           z-index: 9999;">
-               </div>
-               
+                            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            z-index: 9999;">
+                </div>
+                
                 {% else %}
                     <img src="/img/unchecked-white.svg" width="20px">
 
@@ -34,7 +41,9 @@
                 {{ todo.text|safe }}
             {% endif %}
         
-                
+            {% if todo.due_date %}
+                        <span>- Due: {{ todo.due_date.strftime('%B %d, %Y') }}</span>
+                    {% endif %}    
             </form>
 
 

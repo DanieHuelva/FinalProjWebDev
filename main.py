@@ -1,7 +1,22 @@
 from flask import Flask, request, render_template, redirect
 from src.model.todo import Todo, db
+from playhouse.migrate import *
 
 app = Flask(__name__, static_url_path='', static_folder='static')
+
+# Function to perform database migration
+def run_migration():
+    migrator = SqliteMigrator(db)
+    try:
+        migrate(
+            migrator.add_column('todo', 'due_date', DateField(null=True))
+        )
+        print("Migration completed: Added 'due_date' column.")
+    except Exception as e:
+        print(f"Migration error: {e}")
+
+# Perform migration before creating tables
+run_migration()
 
 with db:
         db.create_tables([Todo])
@@ -19,7 +34,11 @@ def _db_close(exc):
 
 @app.route('/')
 def index():
-    return redirect("/todos")
+    view = request.args.get("view", "all")
+    search = request.args.get("search", None)
+    sort_by_due_date = request.args.get("sort", "") == "due_date"
+    todos = Todo.all(view=view, search=search, sort_by_due_date=sort_by_due_date)
+    return render_template("index.html", todos=todos, view=view, sort_by_due_date=sort_by_due_date)
 
 
 @app.get('/todos')
@@ -41,7 +60,9 @@ def search():
 @app.post('/todos')
 def create_todo():
     view = request.form.get('view',None)
-    todo = Todo(text=request.form['todo'], complete=False)
+    due_date_str = request.form.get('due_date', None)
+    due_date = due_date_str if due_date_str else None
+    todo = Todo(text=request.form['todo'], complete=False, due_date=due_date)
     todo.save()
     return redirect("/todos" + addViewFilter(view))
 
@@ -68,6 +89,8 @@ def update_todo(id):
     view = request.form.get('view',None)
     todo = Todo.find(int(id))
     todo.text = request.form['todo']
+    due_date_str = request.form.get('due_date', None)
+    todo.due_date = due_date_str if due_date_str else None
     todo.save()
     return redirect("/todos" + addViewFilter(view))
 

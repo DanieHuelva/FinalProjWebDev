@@ -12,12 +12,13 @@ class Todo(Model):
     text = CharField()
     complete = BooleanField()
     order = IntegerField(null=True)
+    due_date = DateField(null=True)  # Add the due_date field
     
     def toggle_completed(self):
         self.complete = not self.complete 
 
     @classmethod
-    def all(cls,view,search=None):
+    def all(cls,view,search=None, sort_by_due_date=False):
         select = Todo.select()
         if view == "active":
             select = select.where(Todo.complete == False)
@@ -25,7 +26,11 @@ class Todo(Model):
             select = select.where(Todo.complete == True)
         if search:
             select = select.where(Todo.text.ilike("%" + search + "%"))
-        return select.order_by(Todo.order)
+        if sort_by_due_date:
+            select = select.order_by(SQL('COALESCE(due_date, "9999-12-31")').asc())  # Using COALESCE to treat null dates as very far in the future
+        else:
+            select = select.order_by(Todo.order)
+        return select
 
     @classmethod
     def find(cls,todoID):
