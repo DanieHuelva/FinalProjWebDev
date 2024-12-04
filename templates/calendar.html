@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="calendar"></div>
+    {% for todo in todos %}
+    <span>- Due: {{ todo.due_date.strftime('%B %d, %Y') }}</span>
+    {% endfor %}
+{% endblock %}
+
+{% block extra_js %}
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet" />
+
+    <!-- jQuery (needed for FullCalendar) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Moment.js (needed for FullCalendar) -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.18.1/moment.min.js"></script>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Prepare the events array based on the todos passed from the backend
+            var events = [
+                {% for todo in todos %}
+                    {
+                        title: "{{ todo.text }}",  // Title of the event (Todo text)
+                        start: "{{ todo.due_date.strftime('%Y-%m-%d') }}",  // Due date as the event start date
+                        color: "{{ 'red' if todo.due_date < now else 'green' }}"  // Color based on whether the due date has passed
+                    },
+                {% endfor %}
+            ];
+
+            // Initialize FullCalendar with the events array
+            $('#calendar').fullCalendar({
+                events: events
+            });
+        });
+    </script>
+{% endblock %}

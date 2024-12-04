@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect
 from src.model.todo import Todo, db
 from playhouse.migrate import *
+from datetime import datetime
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -39,6 +40,7 @@ def index():
     sort_by_due_date = request.args.get("sort", "") == "due_date"
     todos = Todo.all(view=view, search=search, sort_by_due_date=sort_by_due_date)
     return render_template("index.html", todos=todos, view=view, sort_by_due_date=sort_by_due_date)
+
 
 
 @app.get('/todos')
@@ -113,6 +115,14 @@ def updateTodoOrder():
 
 def addViewFilter(view):
     return (("?view=" + view) if view is not None else "")
+
+
+@app.route('/calendar')
+def calendar():
+    todos = Todo.select().where(Todo.due_date.is_null(False)).order_by(Todo.due_date)
+    now = datetime.now()  
+    return render_template('calendar.html', todos=todos, now=now)
+
 
 if __name__ == '__main__':
     app.run(port=5000)
