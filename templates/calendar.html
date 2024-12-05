@@ -1,19 +1,6 @@
-
+{% extends "base.html" %}
 
 {% block content %}
-    <header class="container center">
-    <h1><img style="height: 60px" src="/img/todo-white.svg"> TODOApp</h1>
-
-    <div id="lottie-animation" style="position: absolute; right: 50px; top: -10px; width: 130px; height: 130px; display: none; z-index: 9999;"></div>
-
-    <input class="form-control" type="search"
-        style="float: right; width: 300px"
-        name="search" placeholder="Begin Typing To Search" 
-        hx-get="/search" 
-        hx-trigger="input changed delay:500ms, search" 
-        hx-target="#todos-list">
-
-</header>
     <div id="calendar"></div>
     
 {% endblock %}
