@@ -120,7 +120,7 @@ def addViewFilter(view):
 @app.route('/calendar')
 def calendar():
     todos = Todo.select().where(Todo.due_date.is_null(False)).order_by(Todo.due_date)
-    now = datetime.now()  
+    now = datetime.now().date()
     return render_template('calendar.html', todos=todos, now=now)
 
 
