@@ -12,6 +12,94 @@
     animation: fade-out 1.5s ease-out forwards, fall 1.5s linear;
 }
 
+.fornav{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+nav {
+    padding: 10px 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center;
+    display: flex;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center; /* Center links horizontally */
+    align-items: center;
+    list-style-type: none; /* Remove default list styling */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    margin: 0 15px; /* Space between links */
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: rgb(255, 254, 254); /* Default text color */
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-list a:hover {
+    background-color: #4783c3; /* Hover background */
+    color: white; /* Hover text color */
+}
+
+.nav-list .contrast {
+    background-color: #4783c3; /* Active link background */
+    color: white;
+    border: 2px solid #007bff; /* Border to match background */
+}
+
+.nav-list .contrast:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3;
+}
+
+#calendar{
+    padding-top: 50px;
+}
+
+.cal-con{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.fancy-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(90deg, #4caf50, #81c784);
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.fancy-button:hover {
+    background: linear-gradient(90deg, #388e3c, #66bb6a);
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fancy-button:active {
+    transform: translateY(0);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
 
 .delete-button {
     border: none;  /* Remove default border */
