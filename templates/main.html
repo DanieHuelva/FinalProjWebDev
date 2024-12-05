@@ -18,6 +18,7 @@
 
         <label classe="sorting" for="due_date">Due Date:</label>
         <input type="date" id="due_date" name="due_date">
+        <button type="submit" style="display: none;">Submit</button>
 
     </label>
     <input type="hidden" name="view" value="{{ view }}">
@@ -25,22 +26,24 @@
 
 {%include "todos.html" %}
 
+
+<div class='fornav'>
 <nav>
-    <ul>
-        <li class="sorting">
-            <a class="{{'contrast' if view == None}}"href="/todos">All</a>
-        </li>
-    </ul>
-    <ul>
+    <ul class="nav-list">
         <li>
-            <a class="{{'contrast' if view == 'active'}}"href="/todos?view=active">Active</a>
+            <a class="{{'contrast' if view == None}}" href="/todos">All</a>
         </li>
-    </ul>
-    <ul>
         <li>
-            <a class="{{'contrast' if view == 'complete'}}"href="/todos?view=complete">Complete</a>
+            <a class="{{'contrast' if view == 'active'}}" href="/todos?view=active">Active</a>
+        </li>
+        <li>
+            <a class="{{'contrast' if view == 'complete'}}" href="/todos?view=complete">Complete</a>
         </li>
     </ul>
 </nav>
+</div>
 
-<a href="{{ url_for('calendar') }}">Go to Calendar</a>
+<div class="cal-con">
+    <a href="{{ url_for('calendar') }}" class="fancy-button">Go to Calendar</a>
+</div>
+
