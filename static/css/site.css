@@ -23,8 +23,8 @@
 }
 
 .delete-button img {
-    width: 40px;  /* Size of the image */
-    height: 40px; /* Ensure the image stays a square */
+    width: 20px;  /* Size of the image */
+    height: 20px; /* Ensure the image stays a square */
     transition: transform 0.3s ease;  /* Smooth transition for scaling */
 }
 
@@ -40,7 +40,7 @@
     top: 20px;
     right: 20px;
     padding: 15px;
-    background-color: green;
+    background-color: rgb(105, 105, 105);
     color: white;
     border-radius: 5px;
     font-size: 16px;
@@ -71,7 +71,6 @@
     justify-content: space-between;  /* Space between text and button */
     align-items: center;            /* Vertically center items */
     padding: 10px;
-    border-bottom: 1px solid #ccc;
 }
 
 /* Style for the todo content (text and due date) */

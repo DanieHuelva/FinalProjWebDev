@@ -16,23 +16,18 @@
             }
         </style>
 
-        <label for="due_date">Due Date:</label>
+        <label classe="sorting" for="due_date">Due Date:</label>
         <input type="date" id="due_date" name="due_date">
 
     </label>
     <input type="hidden" name="view" value="{{ view }}">
 </form>
 
-<a hx-get="/todos/reorder"
-    hx-target="#todos-list"
-    hx-swap="outerHTML">Reorder Todos
-</a>
-
 {%include "todos.html" %}
 
 <nav>
     <ul>
-        <li>
+        <li class="sorting">
             <a class="{{'contrast' if view == None}}"href="/todos">All</a>
         </li>
     </ul>
