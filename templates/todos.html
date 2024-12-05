@@ -12,13 +12,12 @@ hx-swap="innerHTML show:main:top">
 <button id="reorderBTN" style="height: 50px; width: 100%; background: white; border: 1px black;">Save</button>
 <ol class="dragparent" id="todo-list">
     {% for todo in todos%}
-    <div class="nested">
         <div id="notification" class="notification"></div>
         <li id="todo-{{ todo.id }}" class="todo-item"> 
             {% if todo.id == editing%}
             <form id="search-results" method="post" action="/todos/{{ todo.id}}">
                 <input autofocus required type="text" value="{{ todo.text}}" name="todo">
-                <input type="date" name="due_date" value="{{ todo.due_date }}" />
+                <input style="color: black;" type="date" name="due_date" value="{{ todo.due_date }}" />
                 <input type="hidden" name="view" value="{{ view }}">
             </form>
             {%else%}
@@ -70,7 +69,6 @@ hx-swap="innerHTML show:main:top">
             </button>
             <input type="hidden" name="ids" value="{{ todo.id }}">
         </li>
-    </div>
     {% endfor %}
     </ol>
 </form>
