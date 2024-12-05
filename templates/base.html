@@ -13,14 +13,26 @@
 
     <!-- Adding Lottie Animations-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.1/lottie.min.js"></script>
-
-    <script src=" https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.32.1/dist/tagify.min.js "></script>
-    <link href=" https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.32.1/dist/tagify.min.css " rel="stylesheet">
+    
 
     <style>
-
+        .sorting{
+            color: grey;
+        }
         .todo-item{
-            background: lightgrey;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    #FF7074 10px,
+                    #FF7074 20px
+                ),
+                linear-gradient(
+                    to bottom,
+                    #FF7074,
+                    white
+                );
             padding: 10px;
             margin: 8px;
             border-radius: 10px;
@@ -267,14 +279,6 @@
             lottieContainer.style.display = 'none';  // Hide the Lottie animation
             animation.stop(); // Stop the animation
         });
-    </script>
-
-    <script>
-            // The DOM element you wish to replace with Tagify
-        var input = document.querySelectorAll('input[class=basic]');
-
-        // initialize Tagify on the above input node reference
-        new Tagify(input)
     </script>
     
     {% block extra_js %}{% endblock %}
