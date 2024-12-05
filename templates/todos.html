@@ -4,9 +4,12 @@
 </div>
 
 
+
+
 <ol id="todos-list">
     {% for todo in todos%}
-        <li> 
+        <div id="notification" class="notification"></div>
+        <li id="todo-{{ todo.id }}" class="todo-item"> 
             {% if todo.id == editing%}
             <form id="search-results" method="post" action="/todos/{{ todo.id}}">
                 <input autofocus required type="text" value="{{ todo.text}}" name="todo">
@@ -16,7 +19,7 @@
             {%else%}
             <form id="search-results" hx-post="/todos/{{ todo.id }}/toggle"
                     hx-target="main"
-            ondblclick="document.getElementById('edit-{{todo.id}}').submit()">
+                    ondblclick="document.getElementById('edit-{{todo.id}}').submit()">
 
             <button style="all:unset"> 
                 {% if todo.complete %}
@@ -51,12 +54,34 @@
                 <input type="hidden" name="view" value="{{ view }}">
             </form>
             {%endif%}
-
+            <button
+            class="delete-button"
+            hx-delete="/todos/{{ todo.id }}" 
+            hx-target="#todo-{{ todo.id }}" 
+            hx-swap="outerHTML"
+            hx-confirm="Are you sure you want to delete this todo?"
+            onclick="deleteTodo({{todo.id}})">
+            <img src="/img/del-img.png" alt="Delete">
+        </button>
         </li>
         
     {% endfor %}
 </ol>
 
+<script src="https://unpkg.com/htmx.org@1.8.4"></script>
+<script>
+    function deleteTodo(id) {
+            // Show the notification immediately when the delete button is clicked
+    const notification = document.getElementById('notification');
+    notification.textContent = "Todo marked for deletion.";
+    notification.classList.add('show');
+    
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+    }
+</script>
 
 
 <script>

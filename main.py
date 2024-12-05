@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, jsonify
 from src.model.todo import Todo, db
 from playhouse.migrate import *
 from datetime import datetime
@@ -122,6 +122,18 @@ def calendar():
     todos = Todo.select().where(Todo.due_date.is_null(False)).order_by(Todo.due_date)
     now = datetime.now().date()
     return render_template('calendar.html', todos=todos, now=now)
+
+
+@app.route('/todos/<id>', methods=['DELETE'])
+def delete_todo(id):
+    try:
+        # Find the todo by its ID
+        todo_to_delete = Todo.get(Todo.id == id)
+        # Delete the todo from the database
+        todo_to_delete.delete_instance()
+        return '', 200  # Blank response to delete the item from the DOM
+    except DoesNotExist:
+        return jsonify({"error": "Todo not found"}), 404
 
 
 if __name__ == '__main__':
